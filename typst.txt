@@ -1,0 +1,160 @@
+RÉFÉRENCE TYPST — Rédaction (texte, tableaux, images)
+Documentation officielle : https://typst.app/docs/
+Éditeur en ligne : https://typst.app/
+
+============================================================
+1. CONFIGURATION DU DOCUMENT (en-tête, à mettre en premier)
+============================================================
+#set document(title: "Titre du document", author: "Nuelo")
+#set page(paper: "a4", margin: 2.5cm)
+#set text(font: "New Computer Modern", size: 11pt, lang: "fr")
+#set heading(numbering: "1.1")
+#set par(justify: true)
+
+- paper: format de page ("a4", "us-letter", ...)
+- margin: marges (cm, pt, mm)
+- lang: "fr" active les règles de typographie française (espaces avant ; : ! ?)
+- par(justify: true): justifie les paragraphes
+
+Réf: https://typst.app/docs/reference/model/document/
+     https://typst.app/docs/reference/layout/page/
+
+============================================================
+2. TITRES ET SECTIONS
+============================================================
+= Titre niveau 1
+== Titre niveau 2
+=== Titre niveau 3
+
+La numérotation ("1.1") est automatique si #set heading(numbering: ...) est actif.
+Pour un titre sans numérotation ni dans la table des matières:
+#heading(numbering: none)[Titre libre]
+
+Réf: https://typst.app/docs/reference/model/heading/
+
+============================================================
+3. MISE EN FORME DU TEXTE
+============================================================
+*gras*
+_italique_
+`code inline`
+#underline[souligné]
+#strike[barré]
+
+Saut de ligne: laisser une ligne vide entre paragraphes.
+Saut de page forcé: #pagebreak()
+
+Réf: https://typst.app/docs/reference/text/
+
+============================================================
+4. LISTES
+============================================================
+Liste à puces:
+- Élément 1
+- Élément 2
+  - Sous-élément (indentation = niveau)
+
+Liste numérotée:
++ Élément 1
++ Élément 2
+
+Liste de définitions:
+/ Terme: Explication du terme
+
+Réf: https://typst.app/docs/reference/model/list/
+     https://typst.app/docs/reference/model/enum/
+     https://typst.app/docs/reference/model/terms/
+
+============================================================
+5. TABLEAUX
+============================================================
+#table(
+  columns: 3,
+  align: center,
+  stroke: 0.5pt,
+  table.header([*Nom*], [*Rôle*], [*Statut*]),
+  [Nuelo], [Fondateur], [Actif],
+  [Item], [Rôle], [Statut],
+)
+
+Options utiles:
+- columns: nombre fixe (3) ou largeurs relatives (columns: (2fr, 1fr, 1fr))
+- align: alignement du contenu des cellules (center, left, right)
+- stroke: épaisseur des bordures (0.5pt), ou none pour aucune bordure
+- table.header(...): ligne d'en-tête distincte
+- fill: couleur de fond, ex. fill: (x, y) => if y == 0 { rgb("#e6e6e6") }
+
+Pour ajouter une légende/numérotation au tableau, l'entourer de #figure:
+#figure(
+  table(columns: 2, [A], [B]),
+  caption: [Légende du tableau]
+)
+
+Réf: https://typst.app/docs/reference/model/table/
+
+============================================================
+6. IMAGES ET FIGURES
+============================================================
+#figure(
+  image("structure.png", width: 80%),
+  caption: [Structure du projet]
+)
+
+- Chemin relatif au fichier .typ (l'image doit être dans le même dossier ou un sous-dossier)
+- width: en % ou unité fixe (cm, pt)
+- La légende est numérotée automatiquement (Figure 1, Figure 2, ...)
+- Pour référencer la figure ailleurs dans le texte: #figure(...) <mon-label>
+  puis "voir @mon-label"
+
+Réf: https://typst.app/docs/reference/visualize/image/
+     https://typst.app/docs/reference/model/figure/
+
+============================================================
+7. RÉFÉRENCES CROISÉES ET LIENS
+============================================================
+Lien hypertexte:
+#link("https://typst.app")[Texte du lien]
+
+Référence interne (vers une section ou figure labellisée):
+= Introduction <intro>
+Voir la section @intro.
+
+Réf: https://typst.app/docs/reference/model/link/
+     https://typst.app/docs/reference/model/ref/
+
+============================================================
+8. TABLE DES MATIÈRES
+============================================================
+#outline(title: "Table des matières")
+
+À placer après la config du document, avant le contenu.
+
+Réf: https://typst.app/docs/reference/model/outline/
+
+============================================================
+9. COMPILATION
+============================================================
+typst compile fichier.typ sortie.pdf
+typst watch fichier.typ        (recompile automatiquement à chaque sauvegarde)
+
+============================================================
+10. STRUCTURE TYPE D'UN DOCUMENT
+============================================================
+#set document(title: "...", author: "Nuelo")
+#set page(paper: "a4", margin: 2.5cm)
+#set text(font: "New Computer Modern", size: 11pt, lang: "fr")
+#set heading(numbering: "1.1")
+#set par(justify: true)
+
+#outline()
+#pagebreak()
+
+= Introduction
+...
+
+= Développement
+...
+#figure(image("structure.png", width: 80%), caption: [Structure])
+
+= Conclusion
+...
