@@ -37,10 +37,29 @@
   #grid(
     columns: (auto, auto, auto),
     gutter: 4pt,
-    rect(width: 4pt, height: 150pt, fill: black),
-    rect(width: 2pt, height: 150pt, fill: black),
+    rect(width: 4pt, height: 140pt, fill: black),
+    rect(width: 2pt, height: 140pt, fill: black),
     align(horizon)[
       #text(font: "JetBrains Mono", size: 24pt)[Projet Personnel et professionnel]
     ]
   )
 ]
+
+#pagebreak()
+
+#set page(
+  footer: align(center)[#context counter(page).display("1")]
+)
+= Introduction
+
+#pagebreak()
+
+#set page(
+  footer: align(center)[#context counter(page).display("1")]
+)
+
+
+
+
+
+
