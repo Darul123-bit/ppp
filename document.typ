@@ -1,5 +1,5 @@
 #set page(paper: "a4", margin: 2.5cm)
-#set text(font: "New Computer Modern", size: 11pt, lang: "fr")
+#set text(font: "JetBrains Mono", size: 11pt, lang: "fr")
 
 // En-tête institutionnel centré
 
@@ -32,14 +32,15 @@
 // Bloc titre avec barres verticales
 
 #v(2cm)
+
 #align(center)[
   #grid(
-  columns: (auto, auto),
-  gutter: 8pt,
-  align(horizon)[#rect(width: 2pt, height: 60pt, fill: black)],
-  align(horizon)[
-    #text(font: "New Computer Modern Mono", size: 24pt)[Projet Personnel et professionnel]
-  ]
-)
+    columns: (auto, auto, auto),
+    gutter: 4pt,
+    rect(width: 4pt, height: 150pt, fill: black),
+    rect(width: 2pt, height: 150pt, fill: black),
+    align(horizon)[
+      #text(font: "JetBrains Mono", size: 24pt)[Projet Personnel et professionnel]
+    ]
+  )
 ]
-
