@@ -32,9 +32,14 @@
 // Bloc titre avec barres verticales
 
 #v(2cm)
-#grid(
+#align(center)[
+  #grid(
   columns: (auto, auto),
   gutter: 8pt,
-  align(horizon)[#rect(width: 2pt, height: 60pt, fill: black)]
-  align(horizon)
+  align(horizon)[#rect(width: 2pt, height: 60pt, fill: black)],
+  align(horizon)[
+    #text(font: "New Computer Modern Mono", size: 24pt)[Projet Personnel et professionnel]
+  ]
 )
+]
+
